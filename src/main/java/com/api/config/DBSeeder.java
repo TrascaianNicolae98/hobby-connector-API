@@ -16,9 +16,10 @@ public class DBSeeder {
   @Autowired private ConnectionTypeRepository connectionTypeRepository;
   @Autowired private TeamRepository teamRepository;
 
+  public DBSeeder() {}
+
   @PostConstruct
   public void seed() {
-    System.out.println("salut");
     ConnectionType connectionTye = new ConnectionType("a");
     Team team = new Team("a", "b");
     AppUser appUser = new AppUser("a", "b", "c", "d", connectionTye, team);
