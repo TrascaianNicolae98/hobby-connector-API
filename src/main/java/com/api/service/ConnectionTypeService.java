@@ -12,4 +12,8 @@ public class ConnectionTypeService {
   public void add(ConnectionType connectionType) {
     this.connectionTypeRepository.save(connectionType);
   }
+
+  public ConnectionType getByName(String name) {
+    return this.connectionTypeRepository.getConnectionTypeByName(name);
+  }
 }

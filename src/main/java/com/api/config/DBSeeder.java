@@ -1,8 +1,6 @@
 package com.api.config;
 
-import com.api.entities.AppUser;
 import com.api.entities.ConnectionType;
-import com.api.entities.Team;
 import com.api.repository.AppUserRepository;
 import com.api.repository.ConnectionTypeRepository;
 import com.api.repository.TeamRepository;
@@ -20,11 +18,9 @@ public class DBSeeder {
 
   @PostConstruct
   public void seed() {
-    ConnectionType connectionTye = new ConnectionType("a");
-    Team team = new Team("a", "b");
-    AppUser appUser = new AppUser("a", "b", "c", "d", connectionTye, team);
-    connectionTypeRepository.save(connectionTye);
-    teamRepository.save(team);
-    appUserRepository.save(appUser);
+    ConnectionType connectionType1 = new ConnectionType("google");
+    ConnectionType connectionType2 = new ConnectionType("account");
+    connectionTypeRepository.save(connectionType1);
+    connectionTypeRepository.save(connectionType2);
   }
 }

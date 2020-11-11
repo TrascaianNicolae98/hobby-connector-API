@@ -1,6 +1,7 @@
 package com.api.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,12 @@ public class AppUser implements Serializable {
   @JoinColumn(name = "connection_id")
   private ConnectionType connectionType;
 
-  @ManyToOne(targetEntity = Team.class)
-  @JoinColumn(name = "team_id")
-  private Team team;
+  @ManyToMany(targetEntity = Team.class)
+  @JoinTable(
+      name = "playerTeam",
+      joinColumns = @JoinColumn(name = "player_id"),
+      inverseJoinColumns = @JoinColumn(name = "team_id"))
+  private List<Team> teamList;
 
   public AppUser(
       String fullName,
@@ -32,12 +36,12 @@ public class AppUser implements Serializable {
       String password,
       String phoneNo,
       ConnectionType connectionType,
-      Team team) {
+      List<Team> teamList) {
     this.fullName = fullName;
     this.email = email;
     this.password = password;
     this.phoneNo = phoneNo;
     this.connectionType = connectionType;
-    this.team = team;
+    this.teamList = teamList;
   }
 }
