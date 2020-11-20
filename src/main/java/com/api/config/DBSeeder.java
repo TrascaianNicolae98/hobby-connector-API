@@ -24,3 +24,4 @@ public class DBSeeder {
     connectionTypeRepository.save(connectionType2);
   }
 }
+
