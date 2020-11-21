@@ -26,17 +26,47 @@ public class DBSeeder {
   @PostConstruct
   public void seedHobies() {
     Hobby hobby1 =
-        new Hobby("hobby2", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 6);
+        new Hobby(
+            "Football",
+            "https://images.unsplash.com/flagged/photo-1571771710019-ca58cf80f225?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+            "link2",
+            "descriere",
+            6);
     Hobby hobby2 =
-        new Hobby("hobby3", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 5);
+        new Hobby(
+            "Basket",
+            "https://images.unsplash.com/photo-1467809941367-bbf259d44dd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80",
+            "link2",
+            "descriere",
+            5);
     Hobby hobby3 =
-        new Hobby("hobby4", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 4);
+        new Hobby(
+            "Paintball",
+            "https://images.unsplash.com/photo-1522499820455-9c821da82b9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+            "link2",
+            "descriere",
+            4);
     Hobby hobby4 =
-        new Hobby("hobby5", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 3);
+        new Hobby(
+            "Handball",
+            "https://www.athens2020.org/sites/default/files/styles/fullhd/public/disciplines-handball-ball.jpg?itok=wtwhHVEJ",
+            "link2",
+            "descriere",
+            3);
     Hobby hobby5 =
-        new Hobby("hobby6", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 3);
+        new Hobby(
+            "Chess",
+            "https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+            "link2",
+            "descriere",
+            3);
     Hobby hobby7 =
-        new Hobby("hobby7", "https://wallpaperaccess.com/full/563319.jpg", "link2", "descriere", 3);
+        new Hobby(
+            "Volleyball",
+            "https://images.unsplash.com/photo-1562552052-c72ceddf93dc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+            "link2",
+            "descriere",
+            3);
     this.hobbyRepository.save(hobby1);
     this.hobbyRepository.save(hobby2);
     this.hobbyRepository.save(hobby3);
