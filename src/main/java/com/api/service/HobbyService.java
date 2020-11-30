@@ -23,6 +23,10 @@ public class HobbyService {
     return this.hobbyRepository.findAll();
   }
 
+  public Hobby findById(Long id) {
+    return this.hobbyRepository.findById(id).get();
+  }
+
   public Hobby convertToEntity(HobbyDto hobbyDto) {
     return new Hobby(
         hobbyDto.getName(),

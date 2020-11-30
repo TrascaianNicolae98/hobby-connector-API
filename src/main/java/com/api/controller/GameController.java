@@ -32,4 +32,13 @@ public class GameController {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
   }
+
+  @PatchMapping("/games/{gameId}")
+  public ResponseEntity deleteGame(@PathVariable Long gameId) {
+    try {
+      return new ResponseEntity(this.gameService.delete(gameId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
 }

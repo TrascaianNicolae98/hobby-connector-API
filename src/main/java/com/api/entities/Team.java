@@ -1,9 +1,6 @@
 package com.api.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,8 +15,18 @@ public class Team {
   private String type;
   private String name;
 
-  public Team(String type, String name) {
+  @ManyToOne(targetEntity = Game.class)
+  @JoinColumn(name = "game_id")
+  private Game game;
+
+  @ManyToOne(targetEntity = Hobby.class)
+  @JoinColumn(name = "hobby_id")
+  private Hobby hobby;
+
+  public Team(String type, String name, Game game, Hobby hobby) {
     this.type = type;
     this.name = name;
+    this.game = game;
+    this.hobby = hobby;
   }
 }

@@ -15,12 +15,18 @@ public class GameService {
     return this.gameRepository.save(game);
   }
 
-  public void delete(Long id) {
+  public Game delete(Long id) {
+    Game game = this.gameRepository.findById(id).get();
     this.gameRepository.deleteById(id);
+    return game;
   }
 
   public List<Game> findAll() {
     return this.gameRepository.findAll();
+  }
+
+  public Game findById(Long id) {
+    return this.gameRepository.findById(id).get();
   }
 
   public Game convertToEntity(GameDto gameDto) {
