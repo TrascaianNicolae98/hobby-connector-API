@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ChampionshipTeamDto {
-    private Long teamId;
-    private Long championshipId;
+  private Long teamId;
+  private Long championshipId;
 }

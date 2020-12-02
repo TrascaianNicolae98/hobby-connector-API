@@ -33,8 +33,6 @@ public class TeamService {
     return this.teamRepository.findById(id).get();
   }
 
-  public Team findById(Long id) { return this.teamRepository.findById(id).get(); }
-
   public List<Team> findAll() {
     return this.teamRepository.findAll();
   }

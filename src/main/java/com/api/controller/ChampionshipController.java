@@ -12,15 +12,14 @@ import org.springframework.web.client.HttpServerErrorException;
 @RestController
 @RequestMapping("/api")
 public class ChampionshipController {
-    @Autowired private ChampionshipService championshipService;
+  @Autowired private ChampionshipService championshipService;
 
-    @PostMapping("/championships")
-    public ResponseEntity saveChampionship(@RequestBody ChampionshipTeamDto championshipTeamDto) {
-        try {
-            return new ResponseEntity(
-                    this.championshipService.save(championshipTeamDto), HttpStatus.OK);
-        } catch (HttpServerErrorException e) {
-            return new ResponseEntity(e.getMessage(), e.getStatusCode());
-        }
+  @PostMapping("/championships")
+  public ResponseEntity saveChampionship(@RequestBody ChampionshipTeamDto championshipTeamDto) {
+    try {
+      return new ResponseEntity(this.championshipService.save(championshipTeamDto), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
+  }
 }

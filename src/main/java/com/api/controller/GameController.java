@@ -41,4 +41,31 @@ public class GameController {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
   }
+
+  @PatchMapping("/gamesPlace/{gameId}")
+  public ResponseEntity setPlace(@PathVariable Long gameId, @RequestBody String place) {
+    try {
+      return new ResponseEntity(this.gameService.setPlace(place, gameId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
+
+  @PatchMapping("/gamesDateTime/{gameId}")
+  public ResponseEntity setDateTime(@PathVariable Long gameId, @RequestBody String dateTime) {
+    try {
+      return new ResponseEntity(this.gameService.setDateTime(dateTime, gameId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
+
+  @PatchMapping("/gamesWinnerId/{gameId}")
+  public ResponseEntity setWinnerId(@PathVariable Long gameId, @RequestBody Long winnerId) {
+    try {
+      return new ResponseEntity(this.gameService.setWinnerId(winnerId, gameId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
 }

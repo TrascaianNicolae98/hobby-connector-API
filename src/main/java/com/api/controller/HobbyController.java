@@ -12,14 +12,13 @@ import org.springframework.web.client.HttpServerErrorException;
 @RestController
 @RequestMapping("/api")
 public class HobbyController {
-  @Autowired
-  private HobbyService hobbyService;
+  @Autowired private HobbyService hobbyService;
 
   @PostMapping("/hobbies")
   public ResponseEntity saveHobby(@RequestBody HobbyDto hobbyDto) {
     try {
       return new ResponseEntity(
-              this.hobbyService.save(this.hobbyService.convertToEntity(hobbyDto)), HttpStatus.OK);
+          this.hobbyService.save(this.hobbyService.convertToEntity(hobbyDto)), HttpStatus.OK);
     } catch (HttpServerErrorException e) {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
