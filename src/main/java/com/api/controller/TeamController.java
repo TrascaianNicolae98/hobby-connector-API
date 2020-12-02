@@ -32,4 +32,22 @@ public class TeamController {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
   }
+
+  @PatchMapping("/teams/{teamId}")
+  public ResponseEntity deleteTeam(@PathVariable Long teamId) {
+    try {
+      return new ResponseEntity(this.teamService.delete(teamId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
+
+  @PatchMapping("/teamsUP/{teamId}")
+  public ResponseEntity updateTeam(@PathVariable Long teamId, @RequestBody String name) {
+    try {
+      return new ResponseEntity(this.teamService.update(name, teamId), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
 }
