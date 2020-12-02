@@ -15,10 +15,6 @@ public class HobbyService {
     return this.hobbyRepository.save(hobby);
   }
 
-  public void delete(Long id) {
-    this.hobbyRepository.deleteById(id);
-  }
-
   public List<Hobby> findAll() {
     return this.hobbyRepository.findAll();
   }
