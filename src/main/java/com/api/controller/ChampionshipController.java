@@ -22,4 +22,13 @@ public class ChampionshipController {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
     }
   }
+
+  @GetMapping("/championships")
+  public ResponseEntity getChampionship() {
+    try {
+      return new ResponseEntity(this.championshipService.findAll(), HttpStatus.OK);
+    } catch (HttpServerErrorException e) {
+      return new ResponseEntity(e.getMessage(), e.getStatusCode());
+    }
+  }
 }
