@@ -1,6 +1,7 @@
 package com.api.service;
 
 import com.api.entities.AppUser;
+import com.api.error.AppException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -14,6 +15,7 @@ import java.util.Map;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,7 +43,7 @@ public class AuthenticationService {
     try {
       GoogleIdToken idToken = this.tokenVerifier(token);
       if (idToken == null) {
-        throw new Exception("Not a valid google connection!");
+        throw new AppException("Not a valid google connection!", HttpStatus.NOT_FOUND);
       } else {
         Payload payload = idToken.getPayload();
         if (!this.userService.userExist(payload.getEmail())) {
@@ -50,7 +52,7 @@ public class AuthenticationService {
                   (String) payload.get("name"),
                   payload.getEmail(),
                   null,
-                  (String) payload.get("phoneNo"),
+                  null,
                   this.connectionTypeService.getByName("google"),
                   null));
         }
@@ -61,7 +63,7 @@ public class AuthenticationService {
       }
     } catch (Exception e) {
       log.error(e.getMessage());
-      throw e;
+      throw new AppException("Not a valid google connection!", HttpStatus.NOT_FOUND);
     }
   }
 
