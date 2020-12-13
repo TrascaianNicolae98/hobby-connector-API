@@ -20,6 +20,10 @@ public class AppUserService {
     return auxAppUser != null;
   }
 
+  public AppUser findById(Long id) {
+    return this.appUserRepository.findById(id).get();
+  }
+
   public AppUser getUserByEmail(String email) {
     return this.appUserRepository.getAppUserByEmail(email);
   }
