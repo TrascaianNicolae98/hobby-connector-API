@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class JwtDto {
+public class LoginResponse {
   String jwt;
   Long userId;
 }

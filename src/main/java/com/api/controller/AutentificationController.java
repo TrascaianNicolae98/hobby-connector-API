@@ -1,8 +1,8 @@
 package com.api.controller;
 
-import com.api.dto.JwtDto;
+import com.api.dto.LoginResponse;
+import com.api.dto.SingUp;
 import com.api.dto.UserLoginDto;
-import com.api.dto.UserSignUpDto;
 import com.api.service.AuthenticationService;
 import com.api.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class AutentificationController {
     try {
       String jwt = this.authenticationService.createJwt(token);
       return new ResponseEntity(
-          new JwtDto(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
+          new LoginResponse(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
           HttpStatus.OK);
     } catch (HttpServerErrorException e) {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
@@ -31,11 +31,11 @@ public class AutentificationController {
   }
 
   @PostMapping("/signUp")
-  public ResponseEntity signUp(@RequestBody UserSignUpDto userSignUpDto) {
+  public ResponseEntity signUp(@RequestBody SingUp singUp) {
     try {
-      String jwt = this.authenticationService.signUp(userSignUpDto);
+      String jwt = this.authenticationService.signUp(singUp);
       return new ResponseEntity(
-          new JwtDto(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
+          new LoginResponse(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
           HttpStatus.OK);
     } catch (HttpServerErrorException e) {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());
@@ -47,7 +47,7 @@ public class AutentificationController {
     try {
       String jwt = this.authenticationService.loginAccount(userLoginDto);
       return new ResponseEntity(
-          new JwtDto(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
+          new LoginResponse(jwt, this.jwtUtil.extractId(this.jwtUtil.extractAllClaims(jwt))),
           HttpStatus.OK);
     } catch (HttpServerErrorException e) {
       return new ResponseEntity(e.getMessage(), e.getStatusCode());

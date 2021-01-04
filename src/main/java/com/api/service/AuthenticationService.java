@@ -1,7 +1,7 @@
 package com.api.service;
 
+import com.api.dto.SingUp;
 import com.api.dto.UserLoginDto;
-import com.api.dto.UserSignUpDto;
 import com.api.entities.AppUser;
 import com.api.error.AppException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -79,13 +79,13 @@ public class AuthenticationService {
     return map;
   }
 
-  public String signUp(UserSignUpDto userSignUpDto) {
-    if (!this.userService.userExist(userSignUpDto.getEmail())) {
+  public String signUp(SingUp singUp) {
+    if (!this.userService.userExist(singUp.getEmail())) {
       AppUser appUser =
           new AppUser(
-              userSignUpDto.getFullName(),
-              userSignUpDto.getEmail(),
-              passwordEncoder(userSignUpDto.getPassword()),
+              singUp.getFullName(),
+              singUp.getEmail(),
+              passwordEncoder(singUp.getPassword()),
               null,
               this.connectionTypeService.getByName("accout"),
               new ArrayList<>());
