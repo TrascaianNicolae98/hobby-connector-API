@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class LoginResponse {
-  String jwt;
-  Long userId;
+  private Long id;
+  private String fullname;
+  private String phoneNo;
+  private String email;
+  private String jwt;
 }

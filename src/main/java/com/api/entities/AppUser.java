@@ -30,6 +30,8 @@ public class AppUser implements Serializable {
       inverseJoinColumns = @JoinColumn(name = "team_id"))
   private List<Team> teamList;
 
+  private boolean isEnable;
+
   public AppUser(
       String fullName,
       String email,
@@ -43,5 +45,6 @@ public class AppUser implements Serializable {
     this.phoneNo = phoneNo;
     this.connectionType = connectionType;
     this.teamList = teamList;
+    this.isEnable = false;
   }
 }
