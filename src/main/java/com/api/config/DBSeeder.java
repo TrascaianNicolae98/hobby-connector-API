@@ -85,14 +85,14 @@ public class DBSeeder {
         new Championship(
             "Football",
             "https://images.unsplash.com/flagged/photo-1571771710019-ca58cf80f225?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-            "link2",
+            "https://images.unsplash.com/flagged/photo-1571771710019-ca58cf80f225?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
             new ArrayList<>());
 
     Championship championship2 =
         new Championship(
             "Basket",
             "https://images.unsplash.com/photo-1467809941367-bbf259d44dd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80",
-            "link2",
+            "https://images.unsplash.com/photo-1467809941367-bbf259d44dd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80",
             new ArrayList<>());
 
     Championship championship3 =

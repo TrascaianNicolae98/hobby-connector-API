@@ -1,14 +1,26 @@
 package com.api.filter;
 
-/*@Component
+import com.api.entities.AppUser;
+import com.api.error.AppException;
+import com.api.service.AppUserService;
+import com.api.util.JwtUtil;
+import java.io.IOException;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+@Component
 public class JwtFilter extends OncePerRequestFilter {
-  @Autowired
-  private JwtUtil jwtUtil;
+  @Autowired private JwtUtil jwtUtil;
   @Autowired private AppUserService userService;
 
   @Override
   protected void doFilterInternal(
-          HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException, AppException {
     final String jwt = request.getHeader("authorization");
     Long userId = null;
@@ -31,4 +43,4 @@ public class JwtFilter extends OncePerRequestFilter {
       }
     }
   }
-}*/
+}
