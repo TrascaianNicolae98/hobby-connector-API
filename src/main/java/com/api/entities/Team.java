@@ -1,5 +1,7 @@
 package com.api.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +25,22 @@ public class Team {
   @JoinColumn(name = "hobby_id")
   private Hobby hobby;
 
+  @ManyToMany(targetEntity = Team.class)
+  @JoinTable(
+      name = "playerTeam",
+      joinColumns = @JoinColumn(name = "player_id"),
+      inverseJoinColumns = @JoinColumn(name = "team_id"))
+  private List<AppUser> users;
+
   public Team(String type, String name, Game game, Hobby hobby) {
     this.type = type;
     this.name = name;
     this.game = game;
     this.hobby = hobby;
+    this.users = new ArrayList<>();
+  }
+
+  public void addUser(AppUser appUser) {
+    this.users.add(appUser);
   }
 }
