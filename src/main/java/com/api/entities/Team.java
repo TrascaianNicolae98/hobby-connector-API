@@ -25,7 +25,9 @@ public class Team {
   @JoinColumn(name = "hobby_id")
   private Hobby hobby;
 
-  @ManyToMany(targetEntity = Team.class)
+  @ManyToMany(
+      cascade = {CascadeType.ALL},
+      targetEntity = Team.class)
   @JoinTable(
       name = "playerTeam",
       joinColumns = @JoinColumn(name = "player_id"),

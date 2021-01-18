@@ -1,14 +1,11 @@
 package com.api.config;
 
-import com.api.entities.Championship;
-import com.api.entities.ConnectionType;
-import com.api.entities.Hobby;
-import com.api.repository.ChampionshipRepository;
-import com.api.repository.ConnectionTypeRepository;
-import com.api.repository.HobbyRepository;
+import com.api.entities.*;
+import com.api.repository.*;
 import java.util.ArrayList;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,10 +13,21 @@ public class DBSeeder {
   @Autowired private ConnectionTypeRepository connectionTypeRepository;
   @Autowired private HobbyRepository hobbyRepository;
   @Autowired private ChampionshipRepository championshipRepository;
+  @Autowired private AppUserRepository appUserRepository;
+  @Autowired private TemporaryTeamRepository temporaryTeamRepository;
+  @Autowired private TemporaryTeamUserRepository temporaryTeamUserRepository;
 
   public DBSeeder() {}
 
-  @PostConstruct
+  @EventListener
+  public void seed(ContextRefreshedEvent event) {
+    this.seedConnection();
+    this.seedHobies();
+    this.seedChampionships();
+    // this.testTournament();
+  }
+
+  // @PostConstruct
   public void seedConnection() {
     ConnectionType connectionType1 = new ConnectionType("google");
     ConnectionType connectionType2 = new ConnectionType("account");
@@ -27,7 +35,7 @@ public class DBSeeder {
     connectionTypeRepository.save(connectionType2);
   }
 
-  @PostConstruct
+  // @PostConstruct
   public void seedHobies() {
     Hobby hobby1 =
         new Hobby(
@@ -79,7 +87,7 @@ public class DBSeeder {
     this.hobbyRepository.save(hobby7);
   }
 
-  @PostConstruct
+  // @PostConstruct
   public void seedChampionships() {
     Championship championship1 =
         new Championship(
@@ -128,5 +136,24 @@ public class DBSeeder {
     this.championshipRepository.save(championship4);
     this.championshipRepository.save(championship5);
     this.championshipRepository.save(championship6);
+  }
+
+  // @PostConstruct
+  public void testTournament() {
+    this.connectionTypeRepository.getConnectionTypeByName("google");
+    AppUser appUser =
+        new AppUser(
+            "Nicu",
+            "@yahoo",
+            "nicu",
+            "",
+            this.connectionTypeRepository.getConnectionTypeByName("google"),
+            new ArrayList<>());
+    this.appUserRepository.save(appUser);
+    TemporaryTeam temporaryTeam =
+        new TemporaryTeam("amical", this.hobbyRepository.findById(new Long(1)).get(), new Long(2));
+    this.temporaryTeamRepository.save(temporaryTeam);
+    TemporaryTeamUser temporaryTeamUser = new TemporaryTeamUser(appUser, temporaryTeam, 1);
+    this.temporaryTeamUserRepository.save(temporaryTeamUser);
   }
 }

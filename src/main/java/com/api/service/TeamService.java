@@ -38,7 +38,7 @@ public class TeamService {
   }
 
   public Team convertToEntity(TeamDto teamDto) {
-    Game game = this.gameService.findById(teamDto.getGameId());
+    Game game = new Game();
     Hobby hobby = this.hobbyService.findById(teamDto.getHobbyId());
     return new Team(teamDto.getType(), teamDto.getName(), game, hobby);
   }
@@ -53,6 +53,4 @@ public class TeamService {
     this.teamRepository.save(team);
     return team;
   }
-
-
 }

@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TemporaryTeamService {
-    @Autowired
-    private TemporaryTeamRepository temporaryTeamRepository;
-    public TemporaryTeam getByCapIdAndHobby(Long captainId, Hobby hobby){
-        return this.temporaryTeamRepository.getTemporaryTeamByCaptainIdAndHobby(captainId,hobby);
-    }
+  @Autowired TemporaryTeamRepository temporaryTeamRepository;
+
+  public TemporaryTeam getTemporaryTeam(Long captainId, String type, Hobby hobby) {
+    return this.temporaryTeamRepository.getByCaptainIdAndTypeAndHobby(captainId, type, hobby);
+  }
+
+  public void addTemporaryTeam(TemporaryTeam temporaryTeam) {
+    this.temporaryTeamRepository.save(temporaryTeam);
+  }
 }

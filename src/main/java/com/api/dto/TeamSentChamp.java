@@ -1,13 +1,13 @@
 package com.api.dto;
 
-import lombok.AllArgsConstructor;
+import java.util.ArrayList;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class TeamDto {
+public class TeamSentChamp {
   private String type;
   private String name;
   private Long gameId;
   private Long hobbyId;
+  private ArrayList<Long> playersIds;
 }

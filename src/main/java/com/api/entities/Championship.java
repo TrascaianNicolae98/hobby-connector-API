@@ -17,7 +17,9 @@ public class Championship {
   String image1;
   String image2;
 
-  @ManyToMany(targetEntity = Team.class)
+  @ManyToMany(
+      cascade = {CascadeType.ALL},
+      targetEntity = Team.class)
   @JoinTable(
       name = "championshipTeam",
       joinColumns = @JoinColumn(name = "team_id"),
@@ -31,7 +33,7 @@ public class Championship {
     this.teamList = teamList;
   }
 
-  public boolean addTeam(Team team) {
-    return this.teamList.add(team);
+  public void addTeam(Team team) {
+    this.teamList.add(team);
   }
 }
